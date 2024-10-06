@@ -7,9 +7,9 @@ services:
     ports:
       - "3000:80"
     depends_on:
-      - node-server
+      - server
 
-  node-server:
+  server:
     build: 
       context: ./api
       target: development
