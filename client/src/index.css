@@ -1,0 +1,19 @@
+@import url('https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+*{
+  box-sizing: border-box;
+}
+:root {
+  color: rgba(255, 255, 255, 0.87);
+  height: 100%;
+
+  /* font-family: "Permanent Marker", cursive; */
+  font-weight: 100;
+  font-style: normal;
+
+}
+input{
+  all: unset;
+}

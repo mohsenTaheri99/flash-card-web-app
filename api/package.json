@@ -1,0 +1,27 @@
+{
+  "name": "flash-card-server",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "dev": "npx ts-node-dev --poll src/index.ts",
+    "build": "rimraf ./dist && tsc",
+    "start": "npm run build && node dist/index.js"
+  },
+  "author": "mohsen",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "@types/express": "^5.0.0",
+    "@types/jsonwebtoken": "^9.0.7",
+    "@types/node": "^22.7.4",
+    "express": "^4.21.0",
+    "jsonwebtoken": "^9.0.2",
+    "mongoose": "^8.7.0",
+    "rimraf": "^6.0.1",
+    "typescript": "^5.6.2"
+  },
+  "devDependencies": {
+    "concurrently": "^9.0.1",
+    "ts-node-dev": "^2.0.0"
+  }
+}
