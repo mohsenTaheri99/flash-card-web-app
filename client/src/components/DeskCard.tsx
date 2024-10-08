@@ -16,7 +16,7 @@ function DeskCard({ desk }: DeskCard) {
   return (
     <div
       key={desk.id}
-      className="flex justify-between items-center bg-gray-800 p-5 rounded-lg shadow-md hover:bg-gray-700 transition duration-300"
+      className="flex w-full justify-between items-center bg-gray-800 p-5 rounded-lg shadow-md hover:bg-gray-700 transition duration-300"
     >
       <Link to={`/desk/${desk.id}`} className="flex-grow">
         <h3 className="text-xl text-white font-semibold">{desk.title}</h3>

@@ -12,14 +12,14 @@ function DisplayDeskList() {
         میزهای شما
       </h2>
       {desks.length > 0 ? (
-        <div className="space-y-4">
+        <div className="space-y-4 flex flex-col items-center">
           {desks.map((desk) => (
             <DeskCard desk={desk} />
           ))}
-          <Tooltip text="اضافه کردن میزکار جدید" className=" mt-8">
+          <Tooltip text="اضافه کردن میزکار جدید" className=" mt-8  ">
             <Link
               to="/add-desk"
-              className=" text-white bg-green-500 hover:bg-green-600  p-4 rounded-full"
+              className=" text-white bg-green-500 hover:bg-green-600  p-4 rounded-full flex w-15"
             >
               <FaPlus className="text-xl" />
             </Link>
