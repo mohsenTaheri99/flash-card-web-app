@@ -20,13 +20,8 @@ router.post(
       return;
     }
 
-    res.send(
-      JSON.stringify({
-        type: "register",
-        username: user?.username,
-        token: token,
-      })
-    );
+    res.setHeader("Set-Cookie", `token=${token}; HttpOnly;path=/`);
+    res.send(JSON.stringify({ message: "login" }));
   }
 );
 router.post(
