@@ -30,7 +30,16 @@ services:
       - ./client:/client
       - /client/node_modules
 
-      
+  telegram-bot:
+    build:
+      context: ./telegram-bot
+    volumes:
+      - ./telegram-bot:/app
+      - /app/node_modules
+    environment:
+      - PORT=3000
+    ports:
+      - "3002:3000"
   mongo:
     image: mongo
     environment:
