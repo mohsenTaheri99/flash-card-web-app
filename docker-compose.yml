@@ -1,4 +1,4 @@
-version: '3.9'
+
 services:
 
   nginx:
@@ -18,12 +18,14 @@ services:
     depends_on:
       - mongo
     restart: unless-stopped 
+
   telegram-bot:
     build:
       context: ./telegram-bot
     environment:
       - NODE_ENV=production 
     restart: unless-stopped 
+
   mongo:
     image: mongo
     environment:
@@ -31,5 +33,6 @@ services:
       - MONGO_INITDB_ROOT_PASSWORD=example
     volumes:
       - flashCardDb:/data/db
+
 volumes:
   flashCardDb:
