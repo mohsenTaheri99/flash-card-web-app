@@ -18,6 +18,7 @@ services:
       - /app/node_modules
     environment:
       - PORT=3000
+      - BOT_TOKEN=7779893384:AAFy-5W_0-N7HHbRKC8Bo9fBkNmiYwl2wNk
     depends_on:
       - mongo
     command: npm run dev
@@ -39,6 +40,7 @@ services:
       - /app/node_modules
     environment:
       - PORT=3000
+      - BOT_TOKEN=7779893384:AAFy-5W_0-N7HHbRKC8Bo9fBkNmiYwl2wNk
     ports:
       - "3002:3000"
 

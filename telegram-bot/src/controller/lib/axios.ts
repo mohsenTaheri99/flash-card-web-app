@@ -1,8 +1,7 @@
 import axios, { AxiosInstance, AxiosResponse } from "axios";
 
-const token = process.env.TELEGRAM_BOT_TOKEN;
+const token = process.env.BOT_TOKEN;
 const BASE_URL = `https://api.telegram.org/bot${token}`;
-const proxy = process.env.SOCKS_PROXY || "socks5://127.0.0.1:12334";
 
 type AxiosWrapper = {
   get: (method: string, params?: Record<string, any>) => Promise<any>;
