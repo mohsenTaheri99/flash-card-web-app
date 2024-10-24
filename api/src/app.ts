@@ -1,8 +1,13 @@
 import express from "express";
-import auth from "./routes/auth";
 
+import flashCard from "./routes/flashCard";
+import { verifyTelegramWebAppData } from "./middlewares/telegram-auth";
 const app = express();
 app.use(express.json());
-app.use("/api/auth", auth);
+app.use(
+  "/api/flashcard",
+  verifyTelegramWebAppData as express.RequestHandler,
+  flashCard
+);
 
 export default app;
