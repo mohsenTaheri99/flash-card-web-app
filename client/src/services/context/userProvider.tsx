@@ -4,16 +4,14 @@ import {
   SetStateAction,
   createContext,
   useContext,
+  useEffect,
   useState,
 } from "react";
+import { TelegramUser } from "../../global";
 type UserProviderProps = {
   children: ReactNode;
 };
-type User = {
-  name: String;
-  coins: number;
-  profit: number;
-};
+type User = TelegramUser & {};
 
 const userContext = createContext<User | null>(null);
 const setUserContext = createContext<null | Dispatch<SetStateAction<User>>>(
@@ -32,12 +30,20 @@ export const useSetUserContext = () => {
 };
 
 function UserProvider({ children }: UserProviderProps) {
-  const [user, SetUser] = useState<User>({
-    name: "mohsen",
-    profit: 0.005,
-    coins: 0,
-  });
+  if (!window.Telegram.WebApp.initDataUnsafe.user) {
+    return <h1>no user found</h1>;
+  }
 
+  const [user, SetUser] = useState<User>({
+    id: window.Telegram.WebApp.initDataUnsafe.user.id,
+    username: window.Telegram.WebApp.initDataUnsafe.user.username,
+    first_name: window.Telegram.WebApp.initDataUnsafe.user.first_name,
+    last_name: window.Telegram.WebApp.initDataUnsafe.user.last_name,
+    photo_url: window.Telegram.WebApp.initDataUnsafe.user.photo_url,
+  });
+  useEffect(() => {
+    console.log(user);
+  }, [user]);
   return (
     <userContext.Provider value={user}>
       <setUserContext.Provider value={SetUser}>

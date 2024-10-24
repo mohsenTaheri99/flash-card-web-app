@@ -27,7 +27,7 @@ interface TelegramWebAppInstance {
   // Add other methods and properties as needed
 }
 
-interface TelegramUser {
+export interface TelegramUser {
   id: number;
   first_name: string;
   last_name?: string;
