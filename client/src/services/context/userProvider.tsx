@@ -8,10 +8,14 @@ import {
   useState,
 } from "react";
 import { TelegramUser } from "../../global";
+import { getInitData } from "../api/flashcard.api";
 type UserProviderProps = {
   children: ReactNode;
 };
-type User = TelegramUser & {};
+type User = TelegramUser & {
+  shelfsIds: string[];
+  Authenticated: boolean;
+};
 
 const userContext = createContext<User | null>(null);
 const setUserContext = createContext<null | Dispatch<SetStateAction<User>>>(
@@ -28,10 +32,9 @@ export const useSetUserContext = () => {
   if (setUser === null) throw new Error("setUser function is not exist");
   return setUser;
 };
-
 function UserProvider({ children }: UserProviderProps) {
   if (!window.Telegram.WebApp.initDataUnsafe.user) {
-    return <h1>no user found</h1>;
+    throw new Error("telegram user not found");
   }
 
   const [user, SetUser] = useState<User>({
@@ -40,10 +43,25 @@ function UserProvider({ children }: UserProviderProps) {
     first_name: window.Telegram.WebApp.initDataUnsafe.user.first_name,
     last_name: window.Telegram.WebApp.initDataUnsafe.user.last_name,
     photo_url: window.Telegram.WebApp.initDataUnsafe.user.photo_url,
+    shelfsIds: [],
+    Authenticated: false,
   });
   useEffect(() => {
-    console.log(user);
-  }, [user]);
+    const fetchInitData = async () => {
+      try {
+        const initUserInfo = await getInitData();
+        SetUser({
+          ...user,
+          shelfsIds: initUserInfo.shelfs,
+          Authenticated: true,
+        });
+      } catch (error) {
+        console.error("Failed to fetch initial user data:", error);
+        setTimeout(fetchInitData, 5000);
+      }
+    };
+    fetchInitData();
+  }, []);
   return (
     <userContext.Provider value={user}>
       <setUserContext.Provider value={SetUser}>
